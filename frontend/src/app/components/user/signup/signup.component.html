@@ -1,0 +1,59 @@
+<div class="content">
+  <h1>Signup Form</h1>
+  <div class="main">
+    <h2>Sign Up</h2>
+    <form [formGroup]="signupForm" (ngSubmit)="onsubmitsignup(signupForm.value)">
+      <h5>First Name</h5>
+      <input type="text" placeholder="Type here" required="" formControlName="firstName">
+      <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
+        <mat-error *ngIf="firstName.errors?.['required']">
+          First name is required
+        </mat-error>
+      </div>
+      <h5>Last Name</h5>
+      <input type="text" placeholder="Type here" required="" formControlName="lastName">
+      <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
+        <mat-error *ngIf="lastName.errors?.['required']">
+          Last name is required
+        </mat-error>
+      </div>
+      <h5>Chat handle name</h5>
+      <input type="text" placeholder="Type here" required="" formControlName="chatHandle" (keyup)="uniqueUserName($event)">
+      <mat-error>{{unameMsg}}</mat-error>
+      <div *ngIf="chatHandle.invalid && (chatHandle.dirty || chatHandle.touched)">
+        <mat-error *ngIf="chatHandle.errors?.['required']">
+          Chat Handle is required
+        </mat-error>
+      </div>
+      <h5>Email</h5>
+      <input type="text" placeholder="sample@sample.com" required="" formControlName="userEmail" (keyup)="uniqueEmail($event)">
+      <mat-error>{{emailMsg}}</mat-error>
+      <div *ngIf="userEmail.invalid && (userEmail.dirty || userEmail.touched)">
+        <mat-error *ngIf="userEmail.errors?.['required']">
+          Email is required
+        </mat-error>
+        <mat-error *ngIf="userEmail.errors?.['pattern']">
+          Invalid email address
+        </mat-error>
+      </div>
+      <h5>Password</h5>
+      <input type="password" placeholder="Password" formControlName="pwd">
+      <div *ngIf="pwd.invalid && (pwd.dirty || pwd.touched)">
+        <mat-error *ngIf="pwd.errors?.['required']">
+          Password is required
+        </mat-error>
+        <mat-error *ngIf="pwd.errors?.['pattern']">Password should be at least 9 characters long and should contain one number,one character and one special character.</mat-error>
+      </div>
+      <h5>Confirm password</h5>
+      <input type="password" placeholder="Password" required="" formControlName="confPwd" (keyup) = "confirmPassword($event)">
+      <mat-error>{{confPwdMsg}}</mat-error>
+      <div *ngIf="confPwd.invalid && (confPwd.dirty || confPwd.touched)">
+        <mat-error *ngIf="confPwd.errors?.['required']">
+          Password is required
+        </mat-error>
+      </div>
+      <button mat-raised-button color="accent" [disabled]="!signupForm.valid">Sign Up</button>
+      <p>Already have an account? <a routerLink="/">Sign In</a> here</p>
+    </form>
+  </div>
+</div>
