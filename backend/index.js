@@ -6,7 +6,7 @@ const connectDB = require("../backend/src/config/db");
 const port = process.env.PORT || 5000;
 const cors = require("cors");
 const app = express();
-const nodemailer=require('nodemailer');
+const nodemailer = require('nodemailer');
 
 app.use(express.static('../backend/public'));
 app.use(cors());
