@@ -1,2 +1,2 @@
 # chatApp
- A real time chat application using MEAN stack
+ A chat application using MEAN stack
