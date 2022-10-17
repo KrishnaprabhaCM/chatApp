@@ -20,4 +20,8 @@ export class UserService {
     let url = `${this.baseUri}/allExistingEmails`;
     return this.http.post(url,{item});
   }
+  sendEmailOTP(item:any){
+    let url = `${this.baseUri}/sendEmailOTP`;
+    return this.http.post(url,{item});
+  }
 }

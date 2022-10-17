@@ -1,30 +1,18 @@
-<div class="signupform">
-    <h1>Verify OTP</h1>
-      <div class="container">
-        <div class="agile_info">
-          <div class="w3_info">
-            <h2>Verify OTP</h2>
-                <form action="#" method="post">
-                <div class=" margin">
-                  <label>Email OTP</label>
-                  <div class="input-group">
-                    <span><i class="fa fa-user" aria-hidden="true"></i></span>
-                    <input type="text" placeholder="Email OTP" required=""> 
-                  </div>
-                </div>
-                <div class="clear"></div>    
-                  <a routerLink="/dashboard"><button class="btn btn-danger btn-block" type="submit">Verify <i class="fa fa-long-arrow-right" aria-hidden="true"></i></button >  </a>              
-              </form>
-          </div>
-          <!-- <div class="w3l_form">
-            <div class="left_grid_info">
-              <h3>No Account?</h3>
-              <p> Create account and stay connected with your loved ones.</p>
-              <a routerLink="/signup" class="btn">Sign Up <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
-            </div>
-          </div> -->
-          <!-- <div class="clear"></div> -->
-          </div>
-          
-        </div>
+<div class="content">
+  <h1>Signup Form</h1>
+  <div class="main">
+    <h2>Sign Up</h2>
+    <form [formGroup]="otpForm" (ngSubmit)="onSubmitOTP(otpForm.value)">
+      
+      <h5>OTP</h5>
+      <input type="password" placeholder="OTP" formControlName="otp">
+      <div *ngIf="otp.invalid && (otp.dirty || otp.touched)">
+        <mat-error *ngIf="otp.errors?.['required']">
+          OTP is required
+        </mat-error>
       </div>
+
+      <button mat-raised-button color="accent" [disabled]="!otpForm.valid">Verify OTP</button>
+    </form>
+  </div>
+</div>

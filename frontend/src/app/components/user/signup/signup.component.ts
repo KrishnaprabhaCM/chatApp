@@ -9,7 +9,6 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-  // signuphide=true;
   submittedsignup=false;
   nameInput = '';
   latNameInput = '';
@@ -46,6 +45,7 @@ export class SignupComponent implements OnInit {
       
     ]),
   })
+
   constructor(private service:UserService,private router:Router) { }
 
   ngOnInit(): void {
@@ -60,21 +60,29 @@ export class SignupComponent implements OnInit {
   get confPwd(){ return this.signupForm.controls.confPwd; } 
    
   onsubmitsignup(values:any){
+    var randomOTP = Math.floor(1000 + Math.random() * 9000);
+    console.log(randomOTP);
     this.submittedsignup=true;
     this.service.signup(values)
      .subscribe((data)=>{
       console.log(data);
       var x=JSON.parse(JSON.stringify(data))
-      this.router.navigate(['/'])
+      this.router.navigate(['/verifyOTP'])
       //   if(x.status){
       //      this.router.navigate(['login']);
       //   }
       //   else{
       //      alert("User already exist");
       //   }
-  });
-    
+    }); 
+    // let reqObj = {
+    //   email:email,
+    // }
+    this.service.sendEmailOTP(values).subscribe(data2=>{
+      console.log(data2);
+    })
   } 
+
   uniqueUserName(event:any){
     event = event.target as HTMLInputElement;
     const userName = event.value;
@@ -87,6 +95,7 @@ export class SignupComponent implements OnInit {
       }
     })
   }
+
   uniqueEmail(event:any){
     event = event.target as HTMLInputElement;
     const emailId = event.value;
@@ -99,6 +108,7 @@ export class SignupComponent implements OnInit {
       }
     })
   }
+
   confirmPassword(event:any){
     event = event?.target as HTMLInputElement;
     const confPwd = event.value;
