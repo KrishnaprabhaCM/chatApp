@@ -1,17 +1,18 @@
 <div class="content">
-  <h1>Signup Form</h1>
+  <h1>OTP Verification Form</h1>
   <div class="main">
-    <h2>Sign Up</h2>
+    <h2>OTP Verification</h2>
     <form [formGroup]="otpForm" (ngSubmit)="onSubmitOTP(otpForm.value)">
       
       <h5>OTP</h5>
       <input type="password" placeholder="OTP" formControlName="otp">
+      <mat-error>{{msg}}</mat-error>
       <div *ngIf="otp.invalid && (otp.dirty || otp.touched)">
         <mat-error *ngIf="otp.errors?.['required']">
           OTP is required
         </mat-error>
       </div>
-
+      
       <button mat-raised-button color="accent" [disabled]="!otpForm.valid">Verify OTP</button>
     </form>
   </div>

@@ -12,25 +12,24 @@ export class SignupComponent implements OnInit {
   submittedsignup=false;
   nameInput = '';
   latNameInput = '';
-  chatHandleInput = '';
+  // chatHandleInput = '';
   unameMsg = '';
   emailInput = '';
   emailMsg = '';
   pwdInput = '';
   confPwdInput = '';
   confPwdMsg = '';
+  isExist = 0;
   
   signupForm = new FormGroup({
     firstName: new FormControl(this.nameInput,[
       Validators.required,
-      Validators.minLength(1)
+      Validators.minLength(1),
+      Validators.pattern('^[A-Za-z]+[A-Za-z ]*$')
     ]),
     lastName: new FormControl(this.latNameInput,[
       Validators.required,
-    ]),
-    chatHandle: new FormControl(this.chatHandleInput,[
-      Validators.required,
-      Validators.minLength(4)
+      Validators.pattern('^[A-Za-z]+[A-Za-z ]*$')
     ]),
     userEmail: new FormControl(this.emailInput,[
       Validators.required,
@@ -54,47 +53,40 @@ export class SignupComponent implements OnInit {
 
   get firstName(){ return this.signupForm.controls.firstName; } 
   get lastName(){ return this.signupForm.controls.lastName; } 
-  get chatHandle(){ return this.signupForm.controls.chatHandle; } 
+  // get chatHandle(){ return this.signupForm.controls.chatHandle; } 
   get userEmail(){ return this.signupForm.controls.userEmail; } 
   get pwd(){ return this.signupForm.controls.pwd; } 
   get confPwd(){ return this.signupForm.controls.confPwd; } 
    
   onsubmitsignup(values:any){
-    var randomOTP = Math.floor(1000 + Math.random() * 9000);
-    console.log(randomOTP);
+    console.log("ONSUBNOIIITTT");
     this.submittedsignup=true;
-    this.service.signup(values)
+    var otp = Math.floor(1000 + Math.random() * 9000);
+    this.service.signup(values,otp)
      .subscribe((data)=>{
       console.log(data);
-      var x=JSON.parse(JSON.stringify(data))
-      this.router.navigate(['/verifyOTP'])
-      //   if(x.status){
-      //      this.router.navigate(['login']);
-      //   }
-      //   else{
-      //      alert("User already exist");
-      //   }
+      var x=JSON.parse(JSON.stringify(data));
+      const userId = x._id;
+      // console.log("VERIFY OTP");
+      this.router.navigate(['/verifyOTP/'+ userId])
     }); 
-    // let reqObj = {
-    //   email:email,
-    // }
-    this.service.sendEmailOTP(values).subscribe(data2=>{
+    this.service.sendEmailOTP(values,otp).subscribe(data2=>{
       console.log(data2);
     })
   } 
 
-  uniqueUserName(event:any){
-    event = event.target as HTMLInputElement;
-    const userName = event.value;
-    this.service.allChatHandles(userName).subscribe((data)=>{
-      if (typeof data == 'object' && Object.keys(data).length === 0) {
-        this.unameMsg = '';
-      }
-      else{
-        this.unameMsg = 'User name already exists';
-      }
-    })
-  }
+  // uniqueUserName(event:any){
+  //   event = event.target as HTMLInputElement;
+  //   const userName = event.value;
+  //   this.service.allChatHandles(userName).subscribe((data)=>{
+  //     if (typeof data == 'object' && Object.keys(data).length === 0) {
+  //       this.unameMsg = '';
+  //     }
+  //     else{
+  //       this.unameMsg = 'User name already exists';
+  //     }
+  //   })
+  // }
 
   uniqueEmail(event:any){
     event = event.target as HTMLInputElement;
@@ -116,9 +108,11 @@ export class SignupComponent implements OnInit {
     if(pwd == confPwd)
     {
       this.confPwdMsg = '';
+      this.isExist = 0;
     }
     else{
        this.confPwdMsg = 'Password mismatch';
+       this.isExist = 1;
     }
   }
 

@@ -1,24 +1,25 @@
 <div class="content">
-  <h1>Sign in Form</h1>
+  <h1>Login</h1>
   <div class="main">
-    <h2>Sign In</h2>
-    <!-- <form [formGroup]="loginForm" (ngSubmit)="onsubmitlogin(loginForm.value)"> -->
+    <h2>Login to you account</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onsubmitLogin(loginForm.value)">
       <h5>User Name</h5>
-      <input type="text" value="Type here" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Type here';}" required="">
+      <input type="text" placeholder="Type here" required="" formControlName="chatHandle">
+      <div *ngIf="chatHandle.invalid && (chatHandle.dirty || chatHandle.touched)">
+        <mat-error *ngIf="chatHandle.errors?.['required']">
+          Chat Handle is required
+        </mat-error>
+      </div>
       <h5>Password</h5>
-      <input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" required="">
-      <a routerLink="dashboard"><input type="submit" value="Sign In"></a>
-      <p>Don't have an account? <a routerLink="signup">Sign In</a> here</p>
-      <!-- <mat-dialog-actions class="centering"> -->
-        <button class="btn" mat-raised-button color="accent" [disabled]="!loginForm.valid">Submit</button>
-        <br />
-        <span
-          >New user?
-          <a class="link" routerLink="/signup"
-            ><span style="color: crimson">Register here.</span>
-          </a></span
-        >
-      <!-- </mat-dialog-actions> -->
-    <!-- </form> -->
+      <input type="password" placeholder="Password" formControlName="pwd">
+      <div *ngIf="pwd.invalid && (pwd.dirty || pwd.touched)">
+        <mat-error *ngIf="pwd.errors?.['required']">
+          Password is required
+        </mat-error>
+      </div>
+      <mat-error>{{userMsg}}</mat-error>
+      <button mat-raised-button color="accent" [disabled]="!loginForm.valid">Login</button>
+      <p>Already have an account? <a routerLink="/signup">Sign Up</a> here</p>
+    </form>
   </div>
 </div>

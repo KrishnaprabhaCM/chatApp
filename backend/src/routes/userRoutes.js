@@ -5,6 +5,12 @@ const {
   signup,
   allChatHandles,
   allExistingEmails,
+  sendEmailOTP,
+  getUserById,
+  verifyOTP,
+  login,
+  createUserName,
+  // otpValidation,
   // getUserDataById,
   // muteUser,
   // blockUser,
@@ -14,10 +20,15 @@ const {
 const { route } = require("./userRoutes");
 
 
-// router.get("/",login);
-router.post("/signup",signup);
+router.post("/login",login);
+router.post("/signup/:otp",signup);
 router.post("/allChatHandles",allChatHandles);
 router.post("/allExistingEmails",allExistingEmails);
+router.post("/sendEmailOTP/:otp",sendEmailOTP);
+router.get("/getUserById/:userId",getUserById);
+router.put("/verifyOTP",verifyOTP);
+router.put("/createUserName/:userId",createUserName);
+// router.post("/otpValidation",otpValidation);
 // router.get("/getUser",getUserDataById);
 // router.post("/mute",muteUser);
 // router.post("/block",blockUser);

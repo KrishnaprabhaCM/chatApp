@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  showFiller = false;
+  shouldRun = /(^|.)(stackblitz|webcontainer).(io|com)$/.test(window.location.host);
+
+  constructor(private router:Router,public service:UserService) { }
 
   ngOnInit(): void {
   }
+  logoutUser(){
+    // localStorage.removeItem('token')
+    localStorage.removeItem('username');  
+    this.router.navigate(['/']);
+   }
 
 }

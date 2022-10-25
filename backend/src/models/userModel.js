@@ -11,20 +11,20 @@ const userSchema = new mongoose.Schema({
   },
   userName: {
     type: String,
-    required: true,
+    required: false,
   },
   email: {
     type: String,
     required: true,
   },
-  // otp: {
-  //   type: Boolean,
-  //   default: false,
-  // },
-  // isVerified: {
-  //   type: Date,
-  //   default: Date.now(),
-  // },
+  otp: {
+    type: String,
+    required: true,
+  },
+  otpVerified: {
+    type: String,
+    default: "0",
+  },
   pwd: {
     type: String,
     required: true,

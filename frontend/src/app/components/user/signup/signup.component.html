@@ -1,13 +1,16 @@
 <div class="content">
-  <h1>Signup Form</h1>
+  <h1>Signup</h1>
   <div class="main">
-    <h2>Sign Up</h2>
+    <h2>Create your account</h2>
     <form [formGroup]="signupForm" (ngSubmit)="onsubmitsignup(signupForm.value)">
       <h5>First Name</h5>
       <input type="text" placeholder="Type here" required="" formControlName="firstName">
       <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
         <mat-error *ngIf="firstName.errors?.['required']">
           First name is required
+        </mat-error>
+        <mat-error *ngIf="firstName.errors?.['pattern']">
+          Only alphabets are allowed
         </mat-error>
       </div>
       <h5>Last Name</h5>
@@ -16,13 +19,8 @@
         <mat-error *ngIf="lastName.errors?.['required']">
           Last name is required
         </mat-error>
-      </div>
-      <h5>Chat handle name</h5>
-      <input type="text" placeholder="Type here" required="" formControlName="chatHandle" (keyup)="uniqueUserName($event)">
-      <mat-error>{{unameMsg}}</mat-error>
-      <div *ngIf="chatHandle.invalid && (chatHandle.dirty || chatHandle.touched)">
-        <mat-error *ngIf="chatHandle.errors?.['required']">
-          Chat Handle is required
+        <mat-error *ngIf="lastName.errors?.['pattern']">
+          Only alphabets are allowed
         </mat-error>
       </div>
       <h5>Email</h5>
@@ -52,8 +50,8 @@
           Password is required
         </mat-error>
       </div>
-      <button mat-raised-button color="accent" [disabled]="!signupForm.valid">Sign Up</button>
-      <p>Already have an account? <a routerLink="/">Sign In</a> here</p>
+      <button mat-raised-button color="accent" [disabled]="(!signupForm.valid) || (isExist == 1)">Sign Up</button>
+      <p>Already have an account? <a routerLink="/">Login</a> here</p>
     </form>
   </div>
 </div>

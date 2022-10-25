@@ -1,0 +1,17 @@
+<div class="content">
+    <h1>Create user name</h1>
+    <div class="main">
+      <h2>Create user name</h2>
+      <form [formGroup]="userNameForm" (ngSubmit)="onSubmitUsername(userNameForm.value)">
+        <h5>Chat handle name</h5>
+      <input type="text" placeholder="Type here" required="" formControlName="chatHandle" (keyup)="uniqueUserName($event)">
+      <mat-error>{{unameMsg}}</mat-error>
+      <div *ngIf="chatHandle.invalid && (chatHandle.dirty || chatHandle.touched)">
+        <mat-error *ngIf="chatHandle.errors?.['required']">
+          User name is required
+        </mat-error>
+      </div>
+        <button mat-raised-button color="accent" [disabled]="(!userNameForm.valid) || (isExist == 1)">Create User Name</button>
+      </form>
+    </div>
+  </div>

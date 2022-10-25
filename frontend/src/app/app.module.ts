@@ -16,6 +16,17 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatIconModule} from '@angular/material/icon';
 import {MatRadioModule} from '@angular/material/radio';
 import { PasswordStrengthMeterModule } from 'angular-password-strength-meter';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { ActiveUsersComponent } from './components/chat/active-users/active-users.component';
+import { AllUsersComponent } from './components/chat/all-users/all-users.component';
+import { MutedUsersComponent } from './components/chat/muted-users/muted-users.component';
+import { BlockedUsersComponent } from './components/chat/blocked-users/blocked-users.component';
+import { ChangePwdComponent } from './components/chat/change-pwd/change-pwd.component';
+import { DashboardChildComponent } from './components/chat/dashboard-child/dashboard-child.component';
+import { CreateUsernameComponent } from './components/user/create-username/create-username.component';
+
 
 
 
@@ -27,7 +38,14 @@ import { PasswordStrengthMeterModule } from 'angular-password-strength-meter';
     SignupComponent,
     LoginComponent,
     DashboardComponent,
-    VerifyOTPComponent
+    VerifyOTPComponent,
+    ActiveUsersComponent,
+    AllUsersComponent,
+    MutedUsersComponent,
+    BlockedUsersComponent,
+    ChangePwdComponent,
+    DashboardChildComponent,
+    CreateUsernameComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +61,9 @@ import { PasswordStrengthMeterModule } from 'angular-password-strength-meter';
     MatIconModule,
     MatRadioModule,
     PasswordStrengthMeterModule.forRoot(),
-
+    MatSidenavModule,
+    MatListModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

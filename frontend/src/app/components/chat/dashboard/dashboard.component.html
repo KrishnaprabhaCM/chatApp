@@ -1,1 +1,75 @@
-<p>dashboard works!</p>
+<mat-sidenav-container>
+    <mat-sidenav #sidebar mode="side" opened="">
+      <section class="tp-section">
+        <mat-list>
+          <div mat-subheader><span>Dashboard</span></div>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <mat-icon mat-list-icon>dashboard</mat-icon>
+            <div mat-line>
+              <a routerLink="dashboard-child"><span>Dashboard</span></a>
+            </div>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <mat-icon mat-list-icon>article</mat-icon>
+            <div mat-line>
+              <a routerLink="all-users"><span>All Users</span></a>
+            </div>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <mat-icon mat-list-icon>approval</mat-icon>
+            <div mat-line>
+              <a routerLink="active-users"><span>Active Users</span></a>
+            </div>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-icon mat-list-icon>volume_off</mat-icon>
+            <div mat-line>
+              <a routerLink="muted-users"><span>Muted Users</span></a>
+            </div>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-icon mat-list-icon>block</mat-icon>
+            <div mat-line>
+              <a routerLink="blocked-users"><span>Blocked Users</span></a>
+            </div>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <mat-icon mat-list-icon>manage_accounts</mat-icon>
+            <div mat-line>
+              <span
+                ><a routerLink="change-pwd"
+                  ><span>Change Password</span></a
+                ></span
+              >
+            </div>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <mat-icon mat-list-icon>logout</mat-icon>
+            <div mat-line>
+              <a (click)="logoutUser()"
+                ><span>Log out</span></a
+              >
+            </div>
+          </mat-list-item>
+        </mat-list>
+      </section>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div class="content">
+        <div class="toolbar">
+          <mat-toolbar>
+            <mat-icon (click)="sidebar.toggle()">menu</mat-icon>
+          </mat-toolbar>
+        </div>
+        <div class="main">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  
