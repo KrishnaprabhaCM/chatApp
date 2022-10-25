@@ -77,6 +77,7 @@ const allExistingEmails = async (req,res) => {
     console.log('Error while fetching existing chat handles');
   }
 }
+
 const sendEmailOTP = async (req,res) => {
   try{
     userEmail = req.body.item;
@@ -111,9 +112,6 @@ const sendEmailOTP = async (req,res) => {
   }
 }
 
-
- 
-
   const getUserById = async (req, res) => {
     try {
       const user = await User.findOne({ _id: req.params.userId });
@@ -133,6 +131,7 @@ const sendEmailOTP = async (req,res) => {
       res.status(403);
     }
   };
+
   const createUserName = async (req, res) => {
     try {
       id = req.params.userId;
@@ -144,6 +143,7 @@ const sendEmailOTP = async (req,res) => {
       res.status(403);
     }
   };
+
 //   const muteUser = async (req, res) => {
 //     try {
 //       const user = await User.find({ _id: req.params.id });
@@ -176,7 +176,15 @@ const sendEmailOTP = async (req,res) => {
 //       res.status(403);
 //     }
 //   };
-module.exports = {signup,allChatHandles,allExistingEmails,sendEmailOTP,getUserById,verifyOTP,login,createUserName}
+module.exports = {
+  signup,
+  allChatHandles,
+  allExistingEmails,
+  sendEmailOTP,
+  getUserById,
+  verifyOTP,
+  login,
+  createUserName}
 // module.exports = {
 //     // login,
 //     signup,

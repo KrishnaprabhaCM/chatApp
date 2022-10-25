@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const {
-  // login,
   signup,
   allChatHandles,
   allExistingEmails,
@@ -10,8 +9,6 @@ const {
   verifyOTP,
   login,
   createUserName,
-  // otpValidation,
-  // getUserDataById,
   // muteUser,
   // blockUser,
   // unmuteUser,
@@ -28,8 +25,6 @@ router.post("/sendEmailOTP/:otp",sendEmailOTP);
 router.get("/getUserById/:userId",getUserById);
 router.put("/verifyOTP",verifyOTP);
 router.put("/createUserName/:userId",createUserName);
-// router.post("/otpValidation",otpValidation);
-// router.get("/getUser",getUserDataById);
 // router.post("/mute",muteUser);
 // router.post("/block",blockUser);
 // router.put("/unmute",unmuteUser);
