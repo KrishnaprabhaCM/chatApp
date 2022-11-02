@@ -15,7 +15,6 @@ export class CreateUsernameComponent implements OnInit {
   unameInput = '';
   msg = '';
   isExist = 0;
-  // console.log(isExist);
   userNameForm = new FormGroup({
     chatHandle:new FormControl(this.unameInput,[
       Validators.required,
@@ -29,32 +28,21 @@ export class CreateUsernameComponent implements OnInit {
 
   get chatHandle(){ return this.userNameForm.controls.chatHandle; } 
 
-  // onSubmitUsername(values:any){
-
-  // }
   onSubmitUsername(values:any){
+    console.log("UserName is ="+values);
     this._Activatedroute.paramMap.subscribe(params => { 
       let userId = params.get('_id'); 
       this.service.createUserName(values,userId).subscribe((data)=>{
         var x=JSON.parse(JSON.stringify(data));
-        console.log(data);
-        // const otp = x.otp;
-        // const typedOTP = values.otp;
-        // if(otp == typedOTP){
-        //   this.msg = '';
-        //   console.log(userId);
-        //   this.service.verifyOTP(userId).subscribe((data)=>{
-        //     this.router.navigate(['username/'+userId]);
             Swal.fire({
               icon: 'success',
               title: 'Account created successfully. Login to continue',
               showConfirmButton: true
-            }) 
-        //   })
-        // }
-        // else{
-        //   this.msg = 'Invalid OTP. Try again';
-        // }
+            }).then((result)=>{
+              if(result.isConfirmed){
+                this.router.navigate(['/']);
+              }
+            })
       });
     });
   } 

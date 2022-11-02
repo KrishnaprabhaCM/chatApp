@@ -1,1 +1,8 @@
-<p>all-users works!</p>
+<form [formGroup]="allUsers" (ngSubmit)="searchUser(allUsers.value)">
+<input type="text" class="text" placeholder="Search..." formControlName="searchTerm">
+<button>Search</button>
+<a routerLink="/dashboard/active-users">
+<p>{{firstName}}</p>
+<p>{{lastName}}</p>
+</a>
+</form>

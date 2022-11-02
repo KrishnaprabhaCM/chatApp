@@ -12,7 +12,6 @@ export class SignupComponent implements OnInit {
   submittedsignup=false;
   nameInput = '';
   latNameInput = '';
-  // chatHandleInput = '';
   unameMsg = '';
   emailInput = '';
   emailMsg = '';
@@ -59,34 +58,17 @@ export class SignupComponent implements OnInit {
   get confPwd(){ return this.signupForm.controls.confPwd; } 
    
   onsubmitsignup(values:any){
-    console.log("ONSUBNOIIITTT");
-    this.submittedsignup=true;
+    this.submittedsignup = true;
     var otp = Math.floor(1000 + Math.random() * 9000);
-    this.service.signup(values,otp)
-     .subscribe((data)=>{
-      console.log(data);
-      var x=JSON.parse(JSON.stringify(data));
+    this.service.signup(values,otp).subscribe((data)=>{
+      var x = JSON.parse(JSON.stringify(data));
       const userId = x._id;
-      // console.log("VERIFY OTP");
-      this.router.navigate(['/verifyOTP/'+ userId])
+      this.router.navigate(['/verifyOTP/'+ userId]);
     }); 
     this.service.sendEmailOTP(values,otp).subscribe(data2=>{
       console.log(data2);
     })
   } 
-
-  // uniqueUserName(event:any){
-  //   event = event.target as HTMLInputElement;
-  //   const userName = event.value;
-  //   this.service.allChatHandles(userName).subscribe((data)=>{
-  //     if (typeof data == 'object' && Object.keys(data).length === 0) {
-  //       this.unameMsg = '';
-  //     }
-  //     else{
-  //       this.unameMsg = 'User name already exists';
-  //     }
-  //   })
-  // }
 
   uniqueEmail(event:any){
     event = event.target as HTMLInputElement;

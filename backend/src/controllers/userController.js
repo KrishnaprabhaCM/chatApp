@@ -3,10 +3,13 @@ const nodemailer = require('nodemailer');
 const jwt = require("jsonwebtoken");
 
 const signup = async (req, res) => {
+
   res.header("Access-Control-Allow-Origin","*");
   res.header("Access-Control-Allow-Headers: Content-Type, application/json");
   res.header("Access-Control-Allow-Methods:GET,POST,PATCH,PUT,DELETE,OPTIONS");
+
   otp = req.params.otp;
+
   try {
     const newUser = await User.create({
       firstName: req.body.item.firstName,
@@ -17,7 +20,8 @@ const signup = async (req, res) => {
       otp: otp,
     });
     res.status(201).send(newUser);
-  } catch (err) {
+  } 
+  catch (err) {
     res.status(403).send("Cannot Create an User");
   }
 };
@@ -80,7 +84,7 @@ const allExistingEmails = async (req,res) => {
 
 const sendEmailOTP = async (req,res) => {
   try{
-    userEmail = req.body.item;
+    userEmail = req.body.item.userEmail;
     otp = req.params.otp;
     
     const transporter = nodemailer.createTransport({
@@ -90,6 +94,7 @@ const sendEmailOTP = async (req,res) => {
           pass: 'eqablhrqwjkadqsc',
       }
     });
+
     const mailOptions = {
       from: 'theresumewizardteam@gmail.com',
       to: 'krishnaprabha173@gmail.com',
@@ -102,7 +107,7 @@ const sendEmailOTP = async (req,res) => {
       if (error) {
         console.log(error)
       } else {
-        console.log("email sent successful")
+        console.log("Email sent successful")
       }
     }
       );
@@ -135,7 +140,7 @@ const sendEmailOTP = async (req,res) => {
   const createUserName = async (req, res) => {
     try {
       id = req.params.userId;
-      userName = req.body.item;
+      userName = req.body.values.chatHandle;
       await User.findByIdAndUpdate({ _id: id },{$set:{"userName":userName}}).then((data)=>{
         res.send(data);
       })

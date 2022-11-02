@@ -20,6 +20,7 @@ const routes: Routes = [
   {path:'username/:_id',component:CreateUsernameComponent},
   {path:'dashboard',canActivate: [AuthGuardService],component:DashboardComponent,
   children: [
+    {path:'',component:DashboardChildComponent},
     {path:'dashboard-child',component:DashboardChildComponent},
     {path:'active-users',component:ActiveUsersComponent},
     {path:'all-users',component:AllUsersComponent},

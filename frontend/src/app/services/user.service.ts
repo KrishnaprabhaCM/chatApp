@@ -11,9 +11,9 @@ export class UserService {
   constructor(private http:HttpClient) { }
 
 
-  signup=(item:any,otp:any)=>{
-    let url = `${this.baseUri}/signup/`+otp;
-    return  this.http.post(url,{item});
+  signup = (item:any,otp:any)=>{
+    let url = `${this.baseUri}/signup/`+ otp;
+    return this.http.post(url,{item});
   }
   
   allChatHandles(item:any){

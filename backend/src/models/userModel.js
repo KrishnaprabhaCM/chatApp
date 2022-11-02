@@ -36,11 +36,7 @@ const userSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now(),
-  },
-  flag: {
-    type: String,
-    default: "0",
-  },
+  }
 });
 
 module.exports = mongoose.model("user", userSchema);
