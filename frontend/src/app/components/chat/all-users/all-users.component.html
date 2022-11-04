@@ -1,8 +1,16 @@
 <form [formGroup]="allUsers" (ngSubmit)="searchUser(allUsers.value)">
 <input type="text" class="text" placeholder="Search..." formControlName="searchTerm">
 <button>Search</button>
-<a routerLink="/dashboard/active-users">
-<p>{{firstName}}</p>
-<p>{{lastName}}</p>
+<a [routerLink]="routeLink + userId">
+    <div>
+        <table>
+            <tr class="lineSpace">
+            <td>{{firstName}}</td>
+            <td>{{lastName}}</td>
+            <td>{{userName}}</td>
+        </tr>
+        <tr><mat-error>{{msg}}</mat-error></tr>
+        </table>
+</div>
 </a>
 </form>

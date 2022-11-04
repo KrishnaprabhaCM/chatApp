@@ -40,11 +40,6 @@ export class VerifyOTPComponent implements OnInit {
           console.log(userId);
           this.service.verifyOTP(userId).subscribe((data)=>{
             this.router.navigate(['username/'+userId]);
-            // Swal.fire({
-            //   icon: 'success',
-            //   title: 'Account created successfully. Login to continue',
-            //   showConfirmButton: true
-            // }) 
           })
         }
         else{

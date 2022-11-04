@@ -5,6 +5,7 @@ import { ActiveUsersComponent } from './components/chat/active-users/active-user
 import { AllUsersComponent } from './components/chat/all-users/all-users.component';
 import { BlockedUsersComponent } from './components/chat/blocked-users/blocked-users.component';
 import { ChangePwdComponent } from './components/chat/change-pwd/change-pwd.component';
+import { ChatInterfaceComponent } from './components/chat/chat-interface/chat-interface.component';
 import { DashboardChildComponent } from './components/chat/dashboard-child/dashboard-child.component';
 import { DashboardComponent } from './components/chat/dashboard/dashboard.component';
 import { MutedUsersComponent } from './components/chat/muted-users/muted-users.component';
@@ -23,6 +24,7 @@ const routes: Routes = [
     {path:'',component:DashboardChildComponent},
     {path:'dashboard-child',component:DashboardChildComponent},
     {path:'active-users',component:ActiveUsersComponent},
+    {path:'chat/:_userId',component:ChatInterfaceComponent},
     {path:'all-users',component:AllUsersComponent},
     {path:'muted-users',component:MutedUsersComponent},
     {path:'blocked-users',component:BlockedUsersComponent},

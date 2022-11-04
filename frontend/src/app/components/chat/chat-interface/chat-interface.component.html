@@ -1,0 +1,9 @@
+<!-- <form > -->
+    <div class="body1">
+        <ul id="messages"></ul>
+        <form id="form" [formGroup]="chatForm" (ngSubmit)="sendChat(chatForm.value)">
+          <input id="input" autocomplete="off" formControlName="chat" />
+          <button>Send</button>
+        </form>   
+    </div>
+  <!-- </form> -->

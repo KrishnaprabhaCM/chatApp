@@ -29,7 +29,7 @@ export class CreateUsernameComponent implements OnInit {
   get chatHandle(){ return this.userNameForm.controls.chatHandle; } 
 
   onSubmitUsername(values:any){
-    console.log("UserName is ="+values);
+    // console.log("UserName is ="+values);
     this._Activatedroute.paramMap.subscribe(params => { 
       let userId = params.get('_id'); 
       this.service.createUserName(values,userId).subscribe((data)=>{

@@ -1,0 +1,15 @@
+.text{
+    width: 70%;
+    height: 30px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: solid blue;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+/* .lineSpace{
+    padding-top: 20px;
+} */

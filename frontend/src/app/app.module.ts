@@ -26,6 +26,10 @@ import { BlockedUsersComponent } from './components/chat/blocked-users/blocked-u
 import { ChangePwdComponent } from './components/chat/change-pwd/change-pwd.component';
 import { DashboardChildComponent } from './components/chat/dashboard-child/dashboard-child.component';
 import { CreateUsernameComponent } from './components/user/create-username/create-username.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+import { ChatInterfaceComponent } from './components/chat/chat-interface/chat-interface.component';
+
 
 
 
@@ -45,7 +49,8 @@ import { CreateUsernameComponent } from './components/user/create-username/creat
     BlockedUsersComponent,
     ChangePwdComponent,
     DashboardChildComponent,
-    CreateUsernameComponent
+    CreateUsernameComponent,
+    ChatInterfaceComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,7 +68,9 @@ import { CreateUsernameComponent } from './components/user/create-username/creat
     PasswordStrengthMeterModule.forRoot(),
     MatSidenavModule,
     MatListModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatFormFieldModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]
