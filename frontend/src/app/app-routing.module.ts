@@ -21,10 +21,10 @@ const routes: Routes = [
   {path:'username/:_id',component:CreateUsernameComponent},
   {path:'dashboard',canActivate: [AuthGuardService],component:DashboardComponent,
   children: [
-    {path:'',component:DashboardChildComponent},
-    {path:'dashboard-child',component:DashboardChildComponent},
+    {path:'',component:ActiveUsersComponent},
+    {path:'dashboard-child/:userName',component:DashboardChildComponent},
     {path:'active-users',component:ActiveUsersComponent},
-    {path:'chat/:_userId',component:ChatInterfaceComponent},
+    {path:'chat/:userName',component:ChatInterfaceComponent},
     {path:'all-users',component:AllUsersComponent},
     {path:'muted-users',component:MutedUsersComponent},
     {path:'blocked-users',component:BlockedUsersComponent},

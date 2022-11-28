@@ -1,34 +1,7 @@
 const Chat = require("../models/chatModel");
 const User = require("../models/userModel");
-// const multer = require("multer");
-// setting up storage folder destination and filename
-// const storage = multer.diskStorage({
-//     destination: function(req, file, callback) {
-//       callback(null, './public/images');
-//     },
-//     filename: function (req, file, callback) {
-//       callback(null, file.originalname);
-//     }
-//   });
-  
-//  // specifying file type
-//   const fileFilter = (req,file,callback)=>{
-//    if(file.mimetype === 'image/jpeg' || file.mimetype === 'image/png'){
-//    callback(null,true);
-//    }
-//    else{
-//        callback(null,false);
-//    }
-//   }
-  
-  
-//   const upload = multer({
-//       storage: storage,
-//       fileFilter:fileFilter
-//     });
-  
-
-// multer ends
+const Blocked = require("../models/blockedModel");
+const Mute = require("../models/muteUser");
 
 const searchUser = async (req,res) => {
   searchTerm = req.body.values.searchTerm;
@@ -48,29 +21,67 @@ const searchUser = async (req,res) => {
   }
 }
 
-// const createChat = async (req, res) => {
-//   try {
-//     const newChat = await Chat.create({
-//       fromUserName: req.body.fromUserName,
-//       toUserName: req.body.toUserName,
-//       chatType: req.body.chatType,
-//       chatContent: req.body.chatContent
-//     });
-//     res.status(201).json(newChat);
-//   } catch (err) {
-//     res.status(400).send("Cannot create the chat");
-//   }
-// };
+const getMsg = async (req, res) => {
+  try {
+    from = req.params.currentuser;
+    to = req.params.username;
+    const chat = await Chat.find({
+      $or:[
+        {$and:[
+        { fromUserName:from},{ toUserName:to}
+      ]},
+      {$and:[
+        { toUserName:from},{fromUserName:to}
+      ]}
+      ]
+    });
+    res.status(200).json(chat);
+  } catch(err) {
+    console.log(err);
+    res.send({ error: "User doesn't exist!" });
+  }
+};
 
-// const getChatByUserId = async (req, res) => {
-//   try {
-//     const chat = await Chat.findById(req.params.id);
-//     res.status(200).json(chat);
-//   } catch {
-//     res.status(400);
-//     res.send({ error: "User doesn't exist!" });
-//   }
-// };
+const activeUsers = async (req, res) => {
+  try {
+    // user = req.params.username;
+    const activeUsers = await User.find({status:"1"});
+    res.status(200).json(activeUsers);
+  } catch(err) {
+    console.log(err);
+    res.send({ error: "Cannot get active users!" });
+  }
+};
+
+const blockUser = async (req,res) => {
+  try{
+    username = req.params.username;
+    currentuser = req.body.currentuser;
+    const blokeUser = await Blocked.create({
+      userName:currentuser,
+      blockedUserName:username,
+    })
+    res.status(201).send(blokeUser);
+  }
+  catch(err){
+    console.log(err);
+  }
+}
+
+const muteUser = async (req,res) => {
+  try{
+    username = req.params.username;
+    currentuser = req.body.currentuser;
+    const blokeUser = await Mute.create({
+      userName:currentuser,
+      muteUserName:username,
+    })
+    res.status(201).send(blokeUser);
+  }
+  catch(err){
+    console.log(err);
+  }
+}
 
 // const getChatById = async (req, res) => {
 //   try {
@@ -131,5 +142,7 @@ const searchUser = async (req,res) => {
 // };
 
 module.exports = {
-  searchUser
+  searchUser,getMsg,
+  activeUsers,blockUser,
+  muteUser
 };

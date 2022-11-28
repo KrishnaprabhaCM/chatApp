@@ -29,6 +29,8 @@ import { CreateUsernameComponent } from './components/user/create-username/creat
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import { ChatInterfaceComponent } from './components/chat/chat-interface/chat-interface.component';
+import {MatMenuModule} from '@angular/material/menu';
+
 
 
 
@@ -70,7 +72,8 @@ import { ChatInterfaceComponent } from './components/chat/chat-interface/chat-in
     MatListModule,
     MatToolbarModule,
     MatFormFieldModule,
-    MatSelectModule
+    MatSelectModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

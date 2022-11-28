@@ -5,11 +5,51 @@
     border-left: none;
     border-right: none;
     border-bottom: solid blue;
+    /* outline: none; */
 }
+.text:focus{outline: none;}
 a{
     text-decoration: none;
     color: black;
 }
-/* .lineSpace{
-    padding-top: 20px;
+/* form{
+    padding-top:20%;
 } */
+/*-- responsive media queries --*/
+
+
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+	form {
+		padding-top:28%;
+	}
+  }
+  
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+  @media only screen and (min-width: 600px) {
+	form {
+		padding-top:20%;
+	}
+  }
+  
+  /* Medium devices (landscape tablets, 768px and up) */
+  @media only screen and (min-width: 768px) {
+	form {
+		padding-top:12%;
+	}
+  } 
+  
+  /* Large devices (laptops/desktops, 992px and up) */
+  @media only screen and (min-width: 992px) {
+	form {
+		padding-top:9%;
+	}
+  } 
+  
+  /* Extra large devices (large laptops and desktops, 1200px and up) */
+  @media only screen and (min-width: 1200px) {
+	form {
+		padding-top:8%;
+	}
+  }

@@ -4,12 +4,12 @@
         <mat-list>
           <div mat-subheader><span>Dashboard</span></div>
           <mat-divider></mat-divider>
-          <mat-list-item>
+          <!-- <mat-list-item>
             <mat-icon mat-list-icon>dashboard</mat-icon>
             <div mat-line>
               <a routerLink="dashboard-child"><span>Dashboard</span></a>
             </div>
-          </mat-list-item>
+          </mat-list-item> -->
           <mat-divider></mat-divider>
           <mat-list-item>
             <mat-icon mat-list-icon>article</mat-icon>
@@ -37,7 +37,7 @@
             </div>
           </mat-list-item>
           <mat-divider></mat-divider>
-          <mat-list-item>
+          <!-- <mat-list-item>
             <mat-icon mat-list-icon>manage_accounts</mat-icon>
             <div mat-line>
               <span
@@ -46,7 +46,7 @@
                 ></span
               >
             </div>
-          </mat-list-item>
+          </mat-list-item> -->
           <mat-divider></mat-divider>
           <mat-list-item>
             <mat-icon mat-list-icon>logout</mat-icon>
@@ -61,7 +61,7 @@
     </mat-sidenav>
     <mat-sidenav-content>
       <div class="content">
-        <div class="toolbar">
+        <div class="toolbar" style="z-index: 1;width: 100%;position: fixed;">
           <mat-toolbar>
             <mat-icon (click)="sidebar.toggle()">menu</mat-icon>
           </mat-toolbar>

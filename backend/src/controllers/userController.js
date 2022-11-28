@@ -37,7 +37,7 @@ const login = async (req,res) =>{
       if(user){
         if(pwd == user.pwd){
           let payload = {subject:uname+pwd};
-          let token =jwt.sign(payload,'secretkey');
+          let token = jwt.sign(payload,'secretkey');
           let userNames = {subject:uname};
           let userToken = jwt.sign(userNames.subject,'secretkey');
           const username = jwt.verify(userToken, "secretkey");
@@ -148,6 +148,30 @@ const sendEmailOTP = async (req,res) => {
       res.status(403);
     }
   };
+  
+  const userActive = async (req, res) => {
+    try {
+      uname = req.params.username;
+      value = req.body.value;
+      await User.updateOne({ userName: uname },{$set:{"status":value}}).then((data)=>{
+        res.send(data);
+      })
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const inactiveStatus = async (req, res) => {
+    try {
+      uname = req.params.username;
+      value = req.body.value;
+      await User.updateOne({ userName: uname },{$set:{"status":value}}).then((data)=>{
+        res.send(data);
+      })
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
 //   const muteUser = async (req, res) => {
 //     try {
@@ -189,7 +213,10 @@ module.exports = {
   getUserById,
   verifyOTP,
   login,
-  createUserName}
+  createUserName,
+  userActive,
+  inactiveStatus
+}
 // module.exports = {
 //     // login,
 //     signup,

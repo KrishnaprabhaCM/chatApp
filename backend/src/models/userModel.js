@@ -25,6 +25,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: "0",
   },
+  status: {
+    type: String,
+    default: "0",
+  },
   pwd: {
     type: String,
     required: true,

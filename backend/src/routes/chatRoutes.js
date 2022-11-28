@@ -7,10 +7,18 @@ const {
   // deleteChat,
   // copyChat,
   // forwardChat
-  searchUser
+  searchUser, getMsg,
+  activeUsers,
+  blockUser,
+  muteUser
 } = require("../controllers/chatController");
 
 router.post("/searchUser/:username", searchUser);
+// router.post("/sendMessage/:username/:currentuser", sendMessage);
+router.get("/getMsg/:username/:currentuser", getMsg);
+router.get("/activeUsers/:username", activeUsers);
+router.post("/blockUser/:username", blockUser);
+router.post("/muteUser/:username", muteUser);
 // router.get("/all", getChatByUserId);
 // router.get("/:id", getChatById);
 // router.patch("/approve/:id", deleteChat);

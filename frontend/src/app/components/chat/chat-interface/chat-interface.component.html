@@ -1,9 +1,49 @@
-<!-- <form > -->
     <div class="body1">
-        <ul id="messages"></ul>
-        <form id="form" [formGroup]="chatForm" (ngSubmit)="sendChat(chatForm.value)">
-          <input id="input" autocomplete="off" formControlName="chat" />
-          <button>Send</button>
+        <ul id="messages" style="padding: 80px;">
+          <li *ngFor="let msg of messages">
+            <div *ngIf="msg.fromUserName == currentuser">
+              <div *ngIf="msg.chatContent != ''">
+            <p style="background-color: rgb(209, 178, 178);border-radius: 5px;padding: 10px;">{{msg.chatContent}}</p>
+            </div>
+            <div *ngIf="msg.image != ''">
+            <img [src]="msg.image" alt="" height="100px" width="20%" />
+          </div>
+          </div>
+          <div *ngIf="msg.toUserName == currentuser">
+            <div *ngIf="msg.chatContent != ''">
+            <p style="background-color: rgb(70, 131, 70);border-radius: 5px;padding: 10px;">{{msg.chatContent}}</p>
+          </div>
+            <div *ngIf="msg.image != ''">
+            <img [src]="msg.image" alt="" height="100px" width="20%" />
+          </div>
+          </div>
+          </li>
+        </ul>
+        <form id="form" #adPost="ngForm" enctype="multipart/form-data" (ngSubmit)="sendChat()">
+          <!-- <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu"> -->
+            <mat-icon mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">file_present</mat-icon>
+          <!-- </button> -->
+          <mat-menu #menu="matMenu">
+            <!-- <input type="file" accept="image/*" formControlName="image" (change)="selectImage($event)"> -->
+            <input
+          type="file" name="image" accept="image/jpeg,image/png" [(ngModel)]="posts.image" #image="ngModel" (change)="selectImage($event)">
+
+          </mat-menu>
+          <input id="input" autocomplete="off" #chat="ngModel" name="chat" [(ngModel)]="posts.chat"/>
+          <!-- <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu"> -->
+            <mat-icon mat-icon-button [matMenuTriggerFor]="menu2" aria-label="Example icon-button with a menu">more_vert</mat-icon>
+          <!-- </button> -->
+          <mat-menu #menu2="matMenu">
+            <button mat-menu-item>
+              <mat-icon>block</mat-icon>
+              <span (click)="blockUser($event)">Block</span>
+            </button>
+            <button mat-menu-item>
+              <mat-icon>notifications_off</mat-icon>
+              <span (click)="muteUser($event)">Mute</span>
+            </button>
+          </mat-menu>
+          
+          <button class="btn" mat-raised-button color="accent">Send</button>
         </form>   
     </div>
-  <!-- </form> -->

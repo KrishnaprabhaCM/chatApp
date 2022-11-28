@@ -54,4 +54,14 @@ export class UserService {
     let url = `${this.baseUri}/createUserName/`+item;
     return this.http.put(url,{values});
   }
+
+  userActive(value:any,username:any){
+    let url = `${this.baseUri}/userActive/`+username;
+    return this.http.put(url,{value});
+  }
+  
+  inactiveStatus(value:any,username:any){
+    let url = `${this.baseUri}/inactiveStatus/`+username;
+    return this.http.put(url,{value});
+  }
 }

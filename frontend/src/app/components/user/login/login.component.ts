@@ -35,9 +35,12 @@ export class LoginComponent implements OnInit {
 
      onsubmitLogin(values:any){
       this.service.getLogin(values).subscribe((data)=>{
-        var x=JSON.parse(JSON.stringify(data));
+        var x = JSON.parse(JSON.stringify(data));
           if(x.user == true)
           {
+            this.service.userActive('1',x.username).subscribe((data)=>{
+              console.log(data);
+            })
             localStorage.setItem('username',x.username);
             this.router.navigate(['dashboard']);
           }

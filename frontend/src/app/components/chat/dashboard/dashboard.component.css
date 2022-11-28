@@ -14,6 +14,7 @@
   }
   mat-toolbar{
     color: gray;
+    background-color: #ffebcd;
   }
   .box{
     margin-top: 15px;

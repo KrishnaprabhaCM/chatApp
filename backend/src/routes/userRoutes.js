@@ -9,6 +9,8 @@ const {
   verifyOTP,
   login,
   createUserName,
+  userActive,
+  inactiveStatus
   // muteUser,
   // blockUser,
   // unmuteUser,
@@ -25,6 +27,8 @@ router.post("/sendEmailOTP/:otp",sendEmailOTP);
 router.get("/getUserById/:userId",getUserById);
 router.put("/verifyOTP",verifyOTP);
 router.put("/createUserName/:userId",createUserName);
+router.put("/userActive/:username",userActive);
+router.put("/inactiveStatus/:username",inactiveStatus);
 // router.post("/mute",muteUser);
 // router.post("/block",blockUser);
 // router.put("/unmute",unmuteUser);
